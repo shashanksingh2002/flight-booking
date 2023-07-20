@@ -34,8 +34,8 @@ module.exports = {
       departureTime: req.body.departureTime,
       startDestination: req.body.startDestination,
       endDestination: req.body.endDestination,
-      seats: req.body.seats,
-      price: req.body.price,
+      seats: Number(req.body.seats),
+      price: Number(req.body.price),
       totalDuration: req.body.totalDuration,
       customerDetails: []
     };
