@@ -11,6 +11,7 @@ const { connectToDb, adminLogout } = require('./database/database');
 // Require middleware functions
 const { secureAdminRoute } = require('./middlewares/secureadmin');
 const { secureUserRoute } = require('./middlewares/secureuser');
+const { json } = require('body-parser');
 
 // Create Express app
 const app = express();
@@ -20,13 +21,20 @@ let db = '';
 
 // Middlewares
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname+'/public'));
 
 // Apply middleware for secure admin routes
 app.use('/admin/*', secureAdminRoute);
 
 // Apply middleware for secure user routes
 app.use('/user/*', secureUserRoute);
+
+//view engine
+app.set('view engine', 'ejs');
+app.set('views',__dirname+'/views');
+
+
+
 
 // Connect to the database
 connectToDb((flag, DB) => {
@@ -42,59 +50,98 @@ connectToDb((flag, DB) => {
   }
 });
 
+//home page
+
+app.get('/', (req,res) => {
+    const email = req.query.email;
+    res.render(__dirname+'/views/index.ejs',{email:email});
+});
+
+app.get('/loginuser' ,(req,res) => {
+   res.render(__dirname+'/views/login.ejs');
+});
+
+app.get('/signupuser', (req,res) => {
+  res.render(__dirname+'/views/signup.ejs');
+});
+
+app.get('/loginadmin', (req,res) => {
+  res.render(__dirname+'/views/adminlogin.ejs');
+});
+
+app.get('/adminhomepage', (req,res) => {
+  const email = req.query.email;
+  res.render(__dirname+'/views/adminhome.ejs',{email:email});
+})
+
 // Admin routes
-app.post('/admin/login', (req, res) => {
+app.post('/admin/login', async(req, res) => {
   // Handle admin login
-  adminLogin(req, res, db);
+  const data = await adminLogin(req, res, db);
+  res.json(data);
 });
 
-app.post('/admin/addflight', (req, res) => {
+app.post('/admin/addflight', async(req, res) => {
   // Handle adding a flight
-  addFlight(req, res, db);
+  const data = await addFlight(req, res, db);
+  res.json(data);
 });
 
-app.delete('/admin/removeflight', (req, res) => {
+app.delete('/admin/removeflight', async(req, res) => {
   // Handle removing a flight
-  removeFlight(req, res, db);
+  const data = await removeFlight(req, res, db);
+  res.json(data);
 });
 
-app.get('/admin/getflightdetails', (req, res) => {
+app.post('/admin/getflightdetails', async(req, res) => {
   // Handle getting flight details
-  getFlightDetails(req, res, db);
+  const data = await getFlightDetails(req, res, db);
+  res.json(data);
 });
 
-app.post('/admin/logout', (req, res) => {
+app.post('/admin/logout', async(req, res) => {
   // Handle admin logout
-  adminLogout(req.body.email, res);
+  const data = await adminLogout(req.body.email, res);
+  res.json(data);
 });
 
 // User routes
-app.post('/user/login', (req, res) => {
-  // Handle user login
-  userLogin(req, res, db);
+app.post('/user/login', async(req, res) => {
+  const data = await userLogin(req, res, db);
+  res.json(data);
 });
 
-app.post('/user/signup', (req, res) => {
+app.post('/user/signup', async(req, res) => {
   // Handle user signup
-  userSignup(req, res, db);
+  const data = await userSignup(req, res, db);
+  res.json(data);
 });
 
-app.get('/user/searchflight', (req, res) => {
+app.post('/user/searchflight', async(req, res) => {
   // Handle searching for a flight
-  getFlight(req, res, db);
+  const data = await getFlight(req, res, db);
+  res.json(data);
 });
 
-app.post('/user/bookticket', (req, res) => {
+app.post('/user/bookticket', async(req, res) => {
   // Handle booking a ticket
-  bookTicket(req, res, db);
+  const data = await bookTicket(req, res, db);
+  res.json(data);
 });
 
-app.get('/user/mybooking', (req, res) => {
+app.get('/user/mybooking', async(req, res) => {
   // Handle getting user's booking details
-  getMyBooking(req, res, db);
+  const data = await getMyBooking(req, res, db);
+  res.json(data);
 });
 
-app.post('/user/logout', (req, res) => {
+app.post('/user/logout', async(req, res) => {
   // Handle user logout
-  userLogout(req, res, db);
+  const data = await userLogout(req, res, db);
+  res.json(data);
 });
+
+app.post('/*',(req,res) => {
+  console.log(req.url);
+  res.json('hiii');
+})

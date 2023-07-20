@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Home Page</title>
+</head>
+<body>
+  <h1>Welcome, Admin!</h1>
+  <% if (email) { %>
+    <p class="user-email"><%= email %></p>
+  <% } %>
+  </br></br>
+ <div>Message From Server: </div>
+</br></br>
+ <div class="message"></div>
+</br></br>
+  <button type = 'button' class="logout">Logout</button>
+  <h2>Add Flight</h2>
+  <form id="addFlightForm">
+    <label for="flightId">Flight ID:</label>
+    <input type="text" id="flightId" name="flightId" required><br><br>
+
+    <label for="airlineName">Airline Name:</label>
+    <input type="text" id="airlineName" name="airlineName" required><br><br>
+
+    <label for="arrivalTime">Arrival Time:</label>
+    <input type="time" id="arrivalTime" name="arrivalTime" required><br><br>
+
+    <label for="departureTime">Departure Time:</label>
+    <input type="time" id="departureTime" name="departureTime" required><br><br>
+
+    <label for="totalDuration">Total Duration:</label>
+    <input type="time" id="totalDuration" name="totalDuration" required><br><br>
+
+    <label for="startDestination">Start Destination:</label>
+            <select id="startDestination" name="startDestination" required>
+              <option value="" selected disabled>Select start destination</option>
+              <option value="DEL">Delhi - Indira Gandhi International Airport</option>
+              <option value="BOM">Mumbai - Chhatrapati Shivaji Maharaj International Airport</option>
+              <option value="BLR">Bengaluru - Kempegowda International Airport</option>
+              <option value="CCU">Kolkata - Netaji Subhash Chandra Bose International Airport</option>
+              <option value="MAA">Chennai - Chennai International Airport</option>
+              <option value="HYD">Hyderabad - Rajiv Gandhi International Airport</option>
+              <option value="COK">Kochi - Cochin International Airport</option>
+              <option value="AMD">Ahmedabad - Sardar Vallabhbhai Patel International Airport</option>
+              <option value="PNQ">Pune - Pune International Airport</option>
+              <option value="GOI">Goa - Goa International Airport</option>
+              <option value="CCJ">Kozhikode - Calicut International Airport</option>
+              <option value="ATQ">Amritsar - Sri Guru Ram Dass Jee International Airport</option>
+              <option value="IXC">Chandigarh - Chandigarh International Airport</option>
+              <option value="JAI">Jaipur - Jaipur International Airport</option>
+              <option value="SXR">Srinagar - Sheikh ul-Alam International Airport</option>
+              <option value="IXR">Ranchi - Birsa Munda Airport</option>
+              <option value="IXB">Bagdogra - Bagdogra Airport</option>
+              <option value="VGA">Vijayawada - Vijayawada International Airport</option>
+              <option value="TRV">Thiruvananthapuram - Trivandrum International Airport</option>
+              <option value="IXM">Madurai - Madurai International Airport</option>
+            </select><br><br>
+            
+            <label for="endDestination">End Destination:</label>
+            <select id="endDestination" name="endDestination" required>
+              <option value="" selected disabled>Select end destination</option>
+              <option value="DEL">Delhi - Indira Gandhi International Airport</option>
+              <option value="BOM">Mumbai - Chhatrapati Shivaji Maharaj International Airport</option>
+              <option value="BLR">Bengaluru - Kempegowda International Airport</option>
+              <option value="CCU">Kolkata - Netaji Subhash Chandra Bose International Airport</option>
+              <option value="MAA">Chennai - Chennai International Airport</option>
+              <option value="HYD">Hyderabad - Rajiv Gandhi International Airport</option>
+              <option value="COK">Kochi - Cochin International Airport</option>
+              <option value="AMD">Ahmedabad - Sardar Vallabhbhai Patel International Airport</option>
+              <option value="PNQ">Pune - Pune International Airport</option>
+              <option value="GOI">Goa - Goa International Airport</option>
+              <option value="CCJ">Kozhikode - Calicut International Airport</option>
+              <option value="ATQ">Amritsar - Sri Guru Ram Dass Jee International Airport</option>
+              <option value="IXC">Chandigarh - Chandigarh International Airport</option>
+              <option value="JAI">Jaipur - Jaipur International Airport</option>
+              <option value="SXR">Srinagar - Sheikh ul-Alam International Airport</option>
+              <option value="IXR">Ranchi - Birsa Munda Airport</option>
+              <option value="IXB">Bagdogra - Bagdogra Airport</option>
+              <option value="VGA">Vijayawada - Vijayawada International Airport</option>
+              <option value="TRV">Thiruvananthapuram - Trivandrum International Airport</option>
+              <option value="IXM">Madurai - Madurai International Airport</option>
+            </select><br><br>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="seats">Seats:</label>
+    <input type="number" id="seats" name="seats" required><br><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" required><br><br>
+
+    <input type="submit" value="Add Flight" class="addbutton">
+  </form>
+
+  <h2>Remove Flight</h2>
+  <form id="removeFlightForm">
+    <label for="flightIdToRemove">Flight ID:</label>
+    <input type="text" id="flightIdToRemove" name="flightIdToRemove" required><br><br>
+
+    <input type="submit" value="Remove Flight" class="removebutton">
+  </form>
+
+  <h2>Get Flight's Customer Details</h2>
+  <form id="getFlightDetailsForm">
+    <label for="flightIdToGetDetails">Flight ID:</label>
+    <input type="text" id="flightIdToGetDetails" name="flightIdToGetDetails" required><br><br>
+
+    <label for="arrivalTimeToGetDetails">Arrival Time:</label>
+    <input type="time" id="arrivalTimeToGetDetails" name="arrivalTimeToGetDetails" required><br><br>
+
+    <input type="submit" value="Get Customer Details" class="customerbutton">
+  </form>
+  
+
+  <script src="/adminhome.js"></script>
+</body>
+</html>

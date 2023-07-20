@@ -105,7 +105,7 @@ module.exports = {
   adminLogout: (email, res) => {
     return db.collection('admin')
       .updateOne({ email: email }, { $set: { isLoggedIn: false } })
-      .then(() => res.json({ "message": "Admin logged out successfully" }))
+      .then(() => {return{ "message": "Admin logged out successfully" }})
       .catch(err => console.error(err));
   },
 

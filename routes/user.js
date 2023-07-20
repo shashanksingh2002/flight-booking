@@ -12,8 +12,8 @@ module.exports = {
       // Hash the password and create a new user object
       const hashedPassword = await hashPassword(req.body.password);
       const user = {
-        fName: req.body.fname,
-        lName: req.body.lname,
+        fName: req.body.fName,
+        lName: req.body.lName,
         email: req.body.email,
         password: hashedPassword,
         isLoggedIn: false,
@@ -21,8 +21,8 @@ module.exports = {
       };
       return db.collection('users')
         .insertOne(user)
-        .then(ack => res.json({ "Message": "Added user", "data": ack }))
-        .catch(err => res.json({ "Message": "Failed to add user" }));
+        .then(ack => { return { "Message": "Added user", "data": ack }})
+        .catch(err => { return { "Message": "Failed to add user" }});
     }
   },
   userLogin: async (req, res, db) => {
@@ -31,7 +31,7 @@ module.exports = {
 
     // If the email is not found, return an error message
     if (!checkInDbEmail) {
-      return res.status(404).json({ 'Message': 'Please sign up. Email not found.' });
+      return { 'Message': 'Please sign up. Email not found.' };
     }
 
     // Get user details for checking the password
@@ -41,11 +41,11 @@ module.exports = {
 
     // If the password is incorrect, return an error message
     if (!checkPassword) {
-      return res.status(404).json({ 'Message': 'Incorrect password. Please try again.' });
+      return { 'Message': 'Incorrect password. Please try again.'};
     } else {
       // Update user's logged-in status
       await updateisLoggedIn(req.body.email);
-      return res.status(200).json({ 'message': 'Successfully logged in.' });
+      return { 'Message': 'Successfully logged in.','data':1, email: req.body.email};
     }
   },
   getFlight: (req, res, db) => {
@@ -56,24 +56,26 @@ module.exports = {
       .then(() => {
         if (!data.length) {
           // No flights exist with the given criteria
-          res.json({ "message": "No flights exist" });
+          return { message: "No flights exist" };
         } else {
           // Return the flight data
-          res.json({ "data": data });
+          return { data: data };
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        return {err : data};
+      });
   },
   bookTicket: async (req, res, db) => {
     const IsSeatsPresent = await checkIfSeatsPresent(req.body.flightId, req.body.seats);
     if (!IsSeatsPresent) {
       // Not enough seats available, return a message
-      return res.json({ 'Message': 'Not enough seats present' });
+      return { 'Message': 'Not enough seats present' };
     }
     await updateFlightsCustomer(req);
     const booking = await updateCustomerFlight(req);
     // Return the booking details and success message
-    res.json({ 'booking': booking, 'message': 'Tickets booked successfully' });
+    return { 'booking': booking, 'message': 'Tickets booked successfully' };
   },
   getMyBooking: (req, res, db) => {
     let data = [];
@@ -82,13 +84,13 @@ module.exports = {
       .forEach(d => data.push(d.currBooking))
       .then(() => {
         // Return the user's booking data
-        res.json({ "data": data });
+        return { "data": data };
       })
       .catch(err => console.error(err));
   },
   userLogout: async (req, res, db) => {
     // Update user's logged-out status
     await updateisLoggedOut(req.body.email);
-    return res.status(200).json({ 'message': 'Successfully logged out.' });
+    return { 'message': 'Successfully logged out.' };
   }
 };

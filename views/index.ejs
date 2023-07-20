@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Home Page</title>
+</head>
+<body>
+
+<header>
+    <div class="left-logo">
+        
+    </div>
+    <div class="title">
+        <h1>Flight Booking</h1>
+    </div>
+    <div class="login-signup">
+        <% if (email) { %>
+            <button type="button" class="logoutbutton">Logout</button>
+        <% } else { %>
+            <button type="button" class="loginbutton">Login</button>
+            <button type="button" class="signupbutton">Signup</button>
+            <button type="button" class="adminbutton">Admin Login</button>
+        <% } %>
+    </div>
+</header>
+<% if (email) { %>
+    <p class="user-email"><%= email %></p>
+<% } %>
+<section>
+    <p>Search for Flights</p>
+    <form method="post" class="getflight">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br><br>
+            
+            <label for="startDestination">Start Destination:</label>
+            <select id="startDestination" name="startDestination" required>
+              <option value="" selected disabled>Select start destination</option>
+              <option value="DEL">Delhi - Indira Gandhi International Airport</option>
+              <option value="BOM">Mumbai - Chhatrapati Shivaji Maharaj International Airport</option>
+              <option value="BLR">Bengaluru - Kempegowda International Airport</option>
+              <option value="CCU">Kolkata - Netaji Subhash Chandra Bose International Airport</option>
+              <option value="MAA">Chennai - Chennai International Airport</option>
+              <option value="HYD">Hyderabad - Rajiv Gandhi International Airport</option>
+              <option value="COK">Kochi - Cochin International Airport</option>
+              <option value="AMD">Ahmedabad - Sardar Vallabhbhai Patel International Airport</option>
+              <option value="PNQ">Pune - Pune International Airport</option>
+              <option value="GOI">Goa - Goa International Airport</option>
+              <option value="CCJ">Kozhikode - Calicut International Airport</option>
+              <option value="ATQ">Amritsar - Sri Guru Ram Dass Jee International Airport</option>
+              <option value="IXC">Chandigarh - Chandigarh International Airport</option>
+              <option value="JAI">Jaipur - Jaipur International Airport</option>
+              <option value="SXR">Srinagar - Sheikh ul-Alam International Airport</option>
+              <option value="IXR">Ranchi - Birsa Munda Airport</option>
+              <option value="IXB">Bagdogra - Bagdogra Airport</option>
+              <option value="VGA">Vijayawada - Vijayawada International Airport</option>
+              <option value="TRV">Thiruvananthapuram - Trivandrum International Airport</option>
+              <option value="IXM">Madurai - Madurai International Airport</option>
+            </select><br><br>
+            
+            <label for="endDestination">End Destination:</label>
+            <select id="endDestination" name="endDestination" required>
+              <option value="" selected disabled>Select end destination</option>
+              <option value="DEL">Delhi - Indira Gandhi International Airport</option>
+              <option value="BOM">Mumbai - Chhatrapati Shivaji Maharaj International Airport</option>
+              <option value="BLR">Bengaluru - Kempegowda International Airport</option>
+              <option value="CCU">Kolkata - Netaji Subhash Chandra Bose International Airport</option>
+              <option value="MAA">Chennai - Chennai International Airport</option>
+              <option value="HYD">Hyderabad - Rajiv Gandhi International Airport</option>
+              <option value="COK">Kochi - Cochin International Airport</option>
+              <option value="AMD">Ahmedabad - Sardar Vallabhbhai Patel International Airport</option>
+              <option value="PNQ">Pune - Pune International Airport</option>
+              <option value="GOI">Goa - Goa International Airport</option>
+              <option value="CCJ">Kozhikode - Calicut International Airport</option>
+              <option value="ATQ">Amritsar - Sri Guru Ram Dass Jee International Airport</option>
+              <option value="IXC">Chandigarh - Chandigarh International Airport</option>
+              <option value="JAI">Jaipur - Jaipur International Airport</option>
+              <option value="SXR">Srinagar - Sheikh ul-Alam International Airport</option>
+              <option value="IXR">Ranchi - Birsa Munda Airport</option>
+              <option value="IXB">Bagdogra - Bagdogra Airport</option>
+              <option value="VGA">Vijayawada - Vijayawada International Airport</option>
+              <option value="TRV">Thiruvananthapuram - Trivandrum International Airport</option>
+              <option value="IXM">Madurai - Madurai International Airport</option>
+            </select><br><br>
+            
+            <input type="submit" value="Submit" class="getflightsubmit">          
+    </form>
+    </br>
+    <div class="bookticket">
+
+    </div>
+</section>
+
+<script src="/script.js"></script>
+
+</body>
+</html>

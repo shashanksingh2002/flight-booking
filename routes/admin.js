@@ -4,7 +4,7 @@ module.exports = {
   adminLogin: async (req, res, db) => {
     let data = [];
     let message = '';
-    await db.collection('admin')
+    return db.collection('admin')
       .find({ email: req.body.email })
       .forEach(d => data.push(d))
       .then(async () => {
@@ -20,7 +20,7 @@ module.exports = {
           await updateAdminLoggedIn(req.body.email);
           message = "Logged In successfully";
         }
-        return res.json({ "message": message });
+        return { "message": message,"email": req.body.email };
       })
       .catch(err => console.error(err));
   },
@@ -37,41 +37,47 @@ module.exports = {
       seats: req.body.seats,
       price: req.body.price,
       totalDuration: req.body.totalDuration,
-      customerDetails: req.body.customerDetails
+      customerDetails: []
     };
     return db.collection('flight')
       .findOne({ flightId: req.body.flightId })
       .then(isFound => {
         if (!isFound) {
           // Flight with the given flightId doesn't exist, insert the flight details
-          db.collection('flight')
+          return db.collection('flight')
             .insertOne(flightDetails)
-            .then(data => res.json({ "data": data, "message": "Added successfully" }))
-            .catch(err => res.json({ "Message": err }));
+            .then((data) => { return {"message": "Added successfully" }})
+            .catch(err => {return { "message": err }});
         } else {
-          // Flight with the given flightId already exists
-          res.json({ "message": "Flight with this flight ID already exists" });
+          return { "message": "Flight with this flight ID already exists" };
         }
       })
-      .catch(err => res.json({ "error": err }));
+      .catch(err => {
+        return { "error": err }
+      });
   },
 
   removeFlight: (req, res, db) => {
+    console.log(req.body.flightId)
     return db.collection('flight')
       .findOne({ flightId: req.body.flightId })
       .then(isFound => {
         if (isFound) {
           // Flight with the given flightId exists, delete it
-          db.collection('flight')
+          return db.collection('flight')
             .deleteOne({ flightId: req.body.flightId })
-            .then(data => res.json({ "data": data, "message": "Deleted successfully" }))
-            .catch(err => res.json({ "Message": err }));
+            .then(data => {
+              return { "message": "Deleted successfully" }  
+            })
+            .catch(err => { return { "message": err }});
         } else {
           // No flight with the given flightId exists
-          res.json({ "message": "No such flight exists with the following flightId" });
+          return { "message": "No such flight exists with the following flightId" };
         }
       })
-      .catch(err => res.json({ "error": err }));
+      .catch(err => {
+        return {error: err};
+      });
   },
 
   getFlightDetails: (req, res, db) => {
@@ -82,12 +88,14 @@ module.exports = {
       .then(() => {
         if (!data.length) {
           // No flight exists with the given flightId and arrivalTime
-          res.json({ "Message": "No such flight exists with the given flightId and Time" });
+          return { "Message": "No such flight exists with the given flightId and Time" };
         } else {
           // Return the flight details
-          res.json({ "data": data });
+          return data;
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+         return {error:err};
+      });
   }
 };
