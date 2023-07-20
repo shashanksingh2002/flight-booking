@@ -191,5 +191,20 @@ Password: "test123"
     <br>
     - All the data present in the readme is dummy apart from admin credentials make sure to signup for user access and add flights for booking tickets.
   </p>
+<h2>Future Improvements:</h2>
+  <ul>
+    <li>Connecting Book Tickets and Sub-features with Frontend: Implement frontend functionality for booking flights and managing bookings.</li>
+    <li>Improving Frontend Design: Enhance user interface and experience with modern design principles and responsive layouts.</li>
+    <li>Ticket Cancellation for Users: Implement a feature for users to cancel their booked tickets.</li>
+    <li>Form Validations for Passwords: Add form validations for password length and strength during user signup.</li>
+  </ul>
+
+  <h2>Future Learning Scope:</h2>
+  <ul>
+    <li>Deploying a Full Stack App: Learn how to deploy the website to a live server.</li>
+    <li>Frontend-Backend Connectivity: Improve communication between frontend and backend.</li>
+    <li>Redesigning Frontend with React: Use React for building a more interactive frontend.</li>
+    <li>Code Readability: Focus on writing clean and readable code for better maintainability.</li>
+  </ul>
 </body>
 </html>
