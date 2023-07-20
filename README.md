@@ -8,6 +8,15 @@
   <p>
     This is a flight booking website that allows users to book flights and administrators to manage flights.
   </p>
+ <h2>Starting the Server</h2>
+  <p>To start the server, follow these steps:</p>
+  <ol>
+    <li>Install Node.js if you haven't already.</li>
+    <li>Navigate to the project directory in your terminal or command prompt.</li>
+    <li>Install the required dependencies using the command: <code>npm install</code>.</li>
+    <li>Start the server using the command: <code>nodemon index.js</code>.</li>
+    <li>The server will be up and running on <code>http://localhost:3000/</code>.</li>
+  </ol>
   <h2>Admin Routes</h2>
   <ul>
     <li>Admin Login: <code>POST /admin/login</code></li>
