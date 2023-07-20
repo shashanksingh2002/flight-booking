@@ -141,7 +141,6 @@ app.post('/user/logout', async(req, res) => {
   res.json(data);
 });
 
-app.post('/*',(req,res) => {
-  console.log(req.url);
-  res.json('hiii');
-})
+app.get('/*',(req,res) => {
+  res.send('No such page exists');
+});

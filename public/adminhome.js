@@ -91,7 +91,7 @@ getCustomerDetailsForm.addEventListener('submit', (e) => {
   })
   .then(response => response.json())
   .then(data => {
-    if(!data.length){
+    if(!data[0].length){
         message.textContent = "No customers for this flight";
     }
     else{
@@ -99,7 +99,7 @@ getCustomerDetailsForm.addEventListener('submit', (e) => {
         data[0].forEach(d => {
             html += `<div>seats: ${d.seats}, email: ${d.email}</div>`
         })
-        bookTickets.innerHTML = html;
+        message.innerHTML = html;
     }
   })
   .catch(err => console.error(err))

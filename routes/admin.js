@@ -12,15 +12,18 @@ module.exports = {
         if (!data.length) {
           // No admin with the given email exists
           message = "No such admin exists";
+          return { "message": message };
         } else if (data[0].password !== req.body.password) {
           // Password doesn't match
           message = "Wrong Password";
+          return { "message": message};
         } else {
           // Update admin's logged-in status
           await updateAdminLoggedIn(req.body.email);
           message = "Logged In successfully";
+          return { "message": message,"email": req.body.email };
         }
-        return { "message": message,"email": req.body.email };
+        
       })
       .catch(err => console.error(err));
   },
@@ -58,7 +61,6 @@ module.exports = {
   },
 
   removeFlight: (req, res, db) => {
-    console.log(req.body.flightId)
     return db.collection('flight')
       .findOne({ flightId: req.body.flightId })
       .then(isFound => {

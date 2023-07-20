@@ -35,7 +35,7 @@ getFlightSubmit.addEventListener('click', (e) => {
     })
     .then(response => response.json())
     .then(data => {
-        if(data.data){
+        if(data.ack){
             let html = ``;
             data.data.forEach(d => {
                 html += `<div>
@@ -55,7 +55,10 @@ getFlightSubmit.addEventListener('click', (e) => {
             })
             fetchGetFlightData.innerHTML = html;
         }
-        else fetchGetFlightData.textContent = data.message;
+        else {
+            console.log(data)
+            fetchGetFlightData.textContent = data.data;
+        }
     })
     .catch(error => {
         // Handle any errors

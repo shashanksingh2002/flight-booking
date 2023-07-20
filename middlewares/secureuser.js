@@ -6,7 +6,7 @@ module.exports = {
       // Allow access to the user login and signup routes
       return next();
     }
-    else if(!req.body.email) return res.json({"data":"Please login to access this feature"});
+    else if(!req.body.email) return res.json({"data":"Please login to access this feature", "ack":0});
     else{
         const isLoggedInUser = await isUserLoggedIn(req.body.email);
         if (isLoggedInUser) {
@@ -14,7 +14,7 @@ module.exports = {
         return next();
         } else {
         // User is not logged in, return a "go to login page" message
-        return res.json({ "data": "go to login page" });
+        return res.json({ "data": "go to login page","ack":0 });
         }
     }
   }

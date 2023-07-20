@@ -24,7 +24,6 @@ signupButton.addEventListener('click' ,(e) => {
         })
         .then(response => response.json())
         .then(data => { 
-            console.log(data.data);
             if(data.data){
                 const url = 'http://localhost:3000/loginuser';
                 window.location.href = url;

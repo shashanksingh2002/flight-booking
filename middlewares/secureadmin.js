@@ -6,7 +6,7 @@ module.exports = {
       // Allow access to the admin login route
       return next();
     }
-    else if(!req.body.email) return res.json({"message":"Please login to access this feature"});
+    else if(!req.body.email.length) return res.json({"message":"Please login to access this feature"});
     else{
         const isLoggedInAdmin = await isAdminLoggedIn(req.body.email);
         if (isLoggedInAdmin) {
@@ -14,7 +14,7 @@ module.exports = {
         return next();
         } else {
         // Admin is not logged in, return an "unauthorized" message
-        return res.json({ "message": "unauthorized" });
+        return res.json({ "message": "unauthorized"});
         }
     }
   }

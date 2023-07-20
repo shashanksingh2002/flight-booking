@@ -56,10 +56,10 @@ module.exports = {
       .then(() => {
         if (!data.length) {
           // No flights exist with the given criteria
-          return { message: "No flights exist" };
+          return { data: "No flights exist" };
         } else {
           // Return the flight data
-          return { data: data };
+          return { data: data, ack:1 };
         }
       })
       .catch(err => {
