@@ -33,9 +33,9 @@
   "arrivalTime": "20:00",
   "departureTime": "20:25",
   "totalDuration": "4:00",
-  "startDestination": "nepal",
+  "startDestination": "NEP",
   "date": "05.01.2023",
-  "endDestination": "kanyakumari",
+  "endDestination": "CHN",
   "seats": 60,
   "price": 8000,
   "email": "admin@test.com"
@@ -98,8 +98,8 @@
   <pre>
 {
   "date": "05.01.2023",
-  "startDestination": "bengalore",
-  "endDestination": "hyderabad",
+  "startDestination": "KOL",
+  "endDestination": "HYD",
   "email": "mukund@123.com"
 }
   </pre>
@@ -110,9 +110,9 @@
   "flightId": "12ABC19",
   "arrivalTime": "20:00",
   "departureTime": "20:25",
-  "startDestination": "jammu",
+  "startDestination": "CHN",
   "date": "05.01.2023",
-  "endDestination": "kanyakumari",
+  "endDestination": "DEL",
   "seats": 3,
   "email": "mukund@123.com"
 }
@@ -140,10 +140,10 @@
   <h3>User Schema</h3>
   <pre>
 const user = {
-  fName: req.body.fName,
-  lName: req.body.lName,
-  email: req.body.email,
-  password: hashedPassword,
+  fName: "shashank",
+  lName: "singh,
+  email: "shashank@123.com",
+  password: "$2b$10$qCoa3fVdD28nWiuC9jM5N.wvTJ0h2W6b0YxhLDelGpafEVA7BZUV2",
   isLoggedIn: false,
   currBooking: []
 };
@@ -157,9 +157,9 @@ const user = {
   "arrivalTime": "20:00",
   "departureTime": "20:25",
   "totalDuration": "4:00",
-  "startDestination": "nepal",
+  "startDestination": "CHN",
   "date": "05.01.2023",
-  "endDestination": "kanyakumari",
+  "endDestination": "DEL",
   "seats": 60,
   "price": 8000,
   "customerDetails": []
@@ -181,13 +181,15 @@ Password: "test123"
   <p>
     - Admins can only be added by the database administrator for testing purposes.
     <br>
-    - The website has been tested and works perfectly on Postman.
+    - The website has been tested and works on Postman for all the features.
     <br>
-    - For frontend, all features work perfectly except for booking flights.
+    - For frontend, all features work except for booking flights.
     <br>
     - Admin and user routes are protected through middlewares.
     <br>
     - bcrypt is used for hashing passwords before storing in the database.
+    <br>
+    - All the data present in the readme is dummy apart from admin credentials make sure to signup for user access and add flights for booking tickets.
   </p>
 </body>
 </html>
